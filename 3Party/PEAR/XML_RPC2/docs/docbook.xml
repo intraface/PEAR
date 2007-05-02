@@ -1,0 +1,138 @@
+<!DOCTYPE book
+  PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<book>
+
+  <bookinfo>
+	<date>2007-04-28</date>
+    <title>XML_RPC2</title>
+    <subtitle></subtitle>
+    <authorgroup>
+      <author>
+        <firstname>Lars</firstname>
+        <surname>Olesen</surname>
+      </author>
+    </authorgroup>
+    <copyright>
+      <year>2007</year>
+      <holder>The authors</holder>
+    </copyright>
+    <legalnotice></legalnotice>
+    <abstract>
+      <para>
+        Describes how to use PEAR XML_RPC2 PHP 5 library
+      </para>
+    </abstract>
+
+  </bookinfo>
+  <toc></toc>
+
+  <!--
+  <preface id="preface">
+    <title>Preface</title>
+    <para>
+      This tutorial describes how to use PHPMailer and explains the use of the class functions.
+    </para>
+  </preface>
+  -->
+
+  <chapter id="introduction">
+    <title>Introduction</title>
+  </chapter>
+
+  <chapter id="server-side">
+
+    <title>Server</title>
+
+    <section id="server-side-create-server">
+      <title>Create server</title>
+      <para>
+        When creating a server, the first thing you have to do is assemble all methods you wish to make available through XML_RPC2 into a class.
+      </para>
+      <para>
+        You need to document the methods using PHPDocumentor tags. When all inline documentation is in place, the server will be self documenting.
+      </para>
+      <para>
+        <programlisting><![CDATA[
+<?php
+require_once 'XML/RPC2/Server.php';
+
+class ExampleServer {
+
+    /**
+     * says hello
+     *
+     * @return mixed Greeting
+     */
+     public function hello()
+     {
+         return 'hello';
+     }
+
+    /**
+     * greets you with your own greeting
+     *
+     * @param string $greeting Greeting to be greeted with
+     *
+     * @return mixed Greeting
+     */
+     public function greeting($greeting)
+     {
+         return strip_tags($greeting);
+     }
+
+}
+
+$server = XML_RPC2_Server::create(new ExampleServer());
+$server->handleCall();
+?>
+        ]]></programlisting>
+      </para>
+
+    <para>
+      Now the server is ready to use with the tricks you learned under the client side.
+    </para>
+
+    </section>
+
+    <section id="server-side-handle-errors">
+      <title>Handle errors in a server</title>
+
+      <para>
+        Often you would need to address errors in your server. Basically all you have to do is throw an exception, if the server fails some how. Beneath is an example on how to do that. Either you throw an ordinary php exception, or you can throw an improved XML_RPC2 exception, where you can state an error number as well.
+      </para>
+
+      <para>
+        <programlisting><![CDATA[
+<?php
+require_once 'XML/RPC2/Server.php';
+
+class BustedServer {
+   /**
+    * crash. Returns an error everytime
+    *
+    * @return bool Fat chance you'll ever receive a return
+    */
+   public static function crash()
+   {
+       throw new Exception('Kaboom!');
+   }
+   /**
+    * bettercrash. Returns a new and improved error
+    *
+    * @return bool Fat chance you'll ever receive a return
+    */
+   public static function crash()
+   {
+       throw new XML_RPC2_FaultException('Kaboom!', 42);
+   }
+}
+$server = XML_RPC2_Server::create('BustedServer');
+$server->handleCall();
+?>
+        ]]></programlisting>
+      </para>
+    </section>
+  </chapter>
+
+</book>

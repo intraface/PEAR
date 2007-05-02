@@ -1,0 +1,62 @@
+<!DOCTYPE book
+  PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<book>
+
+  <bookinfo>
+	<date>2007-04-28</date>
+    <title>LiveUser</title>
+    <subtitle></subtitle>
+    <authorgroup>
+      <author>
+        <firstname>Lars</firstname>
+        <surname>Olesen</surname>
+      </author>
+    </authorgroup>
+    <copyright>
+      <year>2007</year>
+      <holder>The authors</holder>
+    </copyright>
+    <legalnotice></legalnotice>
+    <abstract>
+      <para>
+        Describes how to use PEAR's LiveUser library
+      </para>
+    </abstract>
+
+  </bookinfo>
+  <toc></toc>
+
+  <!--
+  <preface id="preface">
+    <title>Preface</title>
+    <para>
+      This tutorial describes how to use PHPMailer and explains the use of the class functions.
+    </para>
+  </preface>
+  -->
+
+  <chapter id="introduction">
+    <title>Introduction</title>
+  </chapter>
+
+  <chapter id="setting-up">
+
+    <title>Setting up LiveUser</title>
+
+    <section id="setting-up">
+      <title>What do I need</title>
+      <para>
+
+      </para>
+      <para>
+        <programlisting><![CDATA[
+<?php
+?>
+        ]]></programlisting>
+      </para>
+
+    </section>
+  </chapter>
+
+</book>
