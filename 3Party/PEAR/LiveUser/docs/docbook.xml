@@ -44,14 +44,78 @@
 
     <title>Setting up LiveUser</title>
 
-    <section id="setting-up">
-      <title>What do I need</title>
+    <section id="setting-up-the-database">
+      <title>Setting up the database</title>
       <para>
+        You have to setup some standard tables to be able to use LiveUser.
+      </para>
+    </section>
 
+    <section id="setting-up-the-configuration">
+      <title>Setting up the configuration</title>
+      <para>
+        LiveUser is very versatile as it makes you either use some standard database tables, or you can use your existing tables for your users. All that is configured in an array.
+      </para>
+      <para>
+        Using the standard tables this is the minimum requirement for the configuration array. As you can see there is quite a lot of stuff here.
       </para>
       <para>
         <programlisting><![CDATA[
 <?php
+/* auth.php */
+
+$configuration = array(
+			'debug' => true,
+    		'authContainers' => array(
+        		array(
+            		'passwordEncryptionMode'=> 'MD5',
+            		'type'         => 'MDB2',
+		            'expireTime'   => 3600,
+    		        'idleTime'     => 1800,
+        		    'storage' => array(
+	        	        'dsn' => $dsn,
+						'force_seq' => false,
+						'alias' => array(
+		                    'auth_user_id' => 'auth_user_id',
+    		                'lastlogin' => 'lastlogin',
+							'is_active' => 'is_active',
+            	    	    'owner_user_id' => 'owner_user_id',
+                	    	'owner_group_id' => 'owner_group_id',
+		                ),
+    		            'fields' => array(
+							'auth_user_id' => 'integer',
+							'lastlogin' => 'timestamp',
+							'is_active' => 'boolean',
+							'owner_user_id' => 'integer',
+							'owner_group_id' => 'integer',
+						),
+						'tables' => array(
+							'users' => array(
+							'fields' => array(
+                	            'lastlogin' => null,
+                    	        'is_active' => null,
+                        	    'owner_user_id' => null,
+	                            'owner_group_id' => null,
+								),
+							),
+						),
+					),
+				),
+			),
+			'permContainer'  => array(
+				'type'  => 'Complex',
+					'storage' => array(
+						'MDB2' => array(
+							'dsn' => $dsn,
+							'prefix' => 'liveuser_',
+							'force_seq' => false,
+						'fields' => array(
+							'auth_user_id' => 'integer',
+						),
+					)
+				)
+			)
+		);
 ?>
         ]]></programlisting>
       </para>
