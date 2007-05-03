@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<database>
+
+ <name><variable>database</variable></name>
+ <create><variable>create</variable></create>
+ <overwrite><variable>overwrite</variable></overwrite>
+
+ <table>
+
+  <name>liveuser_users</name>
+
+  <declaration>
+
+   <field>
+    <name>authUserId</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default>0</default>
+    <autoincrement>1</autoincrement>
+   </field>
+
+   <field>
+    <name>handle</name>
+    <type>text</type>
+    <length>32</length>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>passwd</name>
+    <type>text</type>
+    <length>32</length>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>lastLogin</name>
+    <type>timestamp</type>
+    <notnull>false</notnull>
+   </field>
+
+   <field>
+    <name>isActive</name>
+    <type>boolean</type>
+    <notnull>false</notnull>
+   </field>
+
+   <field>
+    <name>owner_user_id</name>
+    <type>integer</type>
+    <notnull>false</notnull>
+   </field>
+
+   <field>
+    <name>owner_group_id</name>
+    <type>integer</type>
+    <notnull>false</notnull>
+   </field>
+
+   <index>
+    <name>users_unique_i</name>
+    <unique>true</unique>
+    <field>
+     <name>handle</name>
+    </field>
+   </index>
+
+  </declaration>
+
+ </table>
+
+</database>
