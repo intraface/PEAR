@@ -38,6 +38,21 @@
 
   <chapter id="introduction">
     <title>Introduction</title>
+    <para>
+     LiveUser is an advanced authentication and permission framework that comes with a large array of out of the box features which can be used optionally. The base class is called LiveUser and is often refered to as the "client" and is what will be commonly be used to authenticate a specific user and then optionally make permission checks on this user.
+    </para>
+    <para>
+      LiveUser provides the following key features: The LiveUser class takes care of the login process and can be configured to use a certain permission container and one or more different auth containers. That means, you can have your users' data scattered amongst many data containers and have the LiveUser class try each defined container until the user is found. For example, you can have all website users who can apply for a new account online on the webserver's local database. Also, you want to enable all your company's employees to login to the site without the need to create new accounts for all of them. To achieve that, a second container can be defined to be used by the LiveUser class.
+    </para>
+    <para>
+      You can also define a permission container of your choice that will manage the rights for each user. Depending on the container, you can implement any kind of permission schemes for your application while having one consistent API.
+    </para>
+    <para>
+      Using different permission and auth containers, it's easily possible to integrate newly written applications with older ones that have their own ways of storing permissions and user data. Just make a new container type and you're ready to go!
+    </para>
+    <para>
+      Currently available are containers using: PEAR::DB, PEAR::MDB, PEAR::MDB2, ext/PDO, PEAR::XML_Tree, Session and PEAR::Auth.
+    </para>
   </chapter>
 
   <chapter id="setting-up">
@@ -114,7 +129,7 @@ $configuration = array(
 		);
 ?>
         ]]></programlisting>
-      </para>      
+      </para>
     </section>
 
     <section id="setting-up-the-configuration">
@@ -187,6 +202,16 @@ $configuration = array(
       </para>
 
     </section>
+  </chapter>
+
+  <chapter id="other-references">
+    <title>Other references</title>
+    <para>
+      API: http://pear.php.net/package/LiveUser/docs/latest/li_LiveUser.html
+    </para>
+    <para>
+      Tutorial: http://www.gvngroup.be/doc/LiveUser/index.php
+    </para>
   </chapter>
 
 </book>
