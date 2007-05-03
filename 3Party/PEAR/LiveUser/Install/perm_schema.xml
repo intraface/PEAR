@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<database>
+
+ <name><variable>database</variable></name>
+ <create><variable>create</variable></create>
+ <overwrite><variable>overwrite</variable></overwrite>
+
+ <table>
+
+  <name>liveuser_perm_users</name>
+
+  <declaration>
+
+   <field>
+    <name>perm_user_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default>0</default>
+    <autoincrement>1</autoincrement>
+   </field>
+
+   <field>
+    <name>auth_user_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>auth_container_name</name>
+    <type>text</type>
+    <length>32</length>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>perm_type</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+   </field>
+
+   <index>
+    <name>perm_users_auth_id_i</name>
+    <unique>true</unique>
+    <field>
+     <name>auth_user_id</name>
+    </field>
+    <field>
+     <name>auth_container_name</name>
+    </field>
+   </index>
+
+  </declaration>
+
+ </table>
+
+ <table>
+
+  <name>liveuser_userrights</name>
+
+  <declaration>
+
+   <field>
+    <name>perm_user_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>right_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>right_level</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default>3</default>
+   </field>
+
+   <index>
+    <name>userrights_id_i</name>
+    <unique>true</unique>
+    <field>
+     <name>perm_user_id</name>
+    </field>
+    <field>
+     <name>right_id</name>
+    </field>
+   </index>
+
+  </declaration>
+
+ </table>
+
+ <table>
+
+  <name>liveuser_rights</name>
+
+  <declaration>
+
+   <field>
+    <name>right_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default>0</default>
+    <autoincrement>1</autoincrement>
+   </field>
+
+   <field>
+    <name>area_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>right_define_name</name>
+    <type>text</type>
+    <length>32</length>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>has_implied</name>
+    <type>boolean</type>
+    <notnull>false</notnull>
+   </field>
+
+   <index>
+    <name>rights_define_name_i</name>
+    <unique>true</unique>
+    <field>
+     <name>area_id</name>
+    </field>
+    <field>
+     <name>right_define_name</name>
+    </field>
+   </index>
+
+  </declaration>
+
+ </table>
+
+ <table>
+
+  <name>liveuser_right_implied</name>
+
+  <declaration>
+
+   <field>
+    <name>right_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>implied_right_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <index>
+    <name>right_implied_id_i</name>
+    <unique>true</unique>
+    <field>
+     <name>right_id</name>
+    </field>
+    <field>
+     <name>implied_right_id</name>
+    </field>
+   </index>
+
+  </declaration>
+
+ </table>
+
+ <table>
+
+  <name>liveuser_translations</name>
+
+  <declaration>
+
+   <field>
+    <name>translation_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default>0</default>
+    <autoincrement>1</autoincrement>
+   </field>
+
+   <field>
+    <name>section_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>section_type</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>language_id</name>
+    <type>text</type>
+    <length>32</length>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>name</name>
+    <type>text</type>
+    <length>32</length>
+    <notnull>true</notnull>
+   </field>
+
+   <field>
+    <name>description</name>
+    <type>text</type>
+    <length>255</length>
+    <notnull>false</notnull>
+   </field>
+
+   <index>
+    <name>translations_translation_i</name>
+    <unique>true</unique>
+    <field>
+     <name>section_id</name>
+    </field>
+    <field>
+     <name>section_type</name>
+    </field>
+    <field>
+     <name>language_id</name>
+    </field>
+   </index>
+
+  </declaration>
+
+ </table>
+
+ <table>
+
+  <name>liveuser_areas</name>
+
+  <declaration>
+
+   <field>
+    <name>area_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default>0</default>
+    <autoincrement>1</autoincrement>
+   </field>
+
+   <field>
+    <name>application_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>area_define_name</name>
+    <type>text</type>
+    <length>32</length>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <index>
+    <name>areas_define_name_i</name>
+    <unique>true</unique>
+    <field>
+     <name>application_id</name>
+    </field>
+    <field>
+     <name>area_define_name</name>
+    </field>
+   </index>
+
+  </declaration>
+
+ </table>
+
+ <table>
+
+  <name>liveuser_area_admin_areas</name>
+
+  <declaration>
+
+   <field>
+    <name>area_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>perm_user_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <index>
+    <name>area_admin_areas_id_i</name>
+    <unique>true</unique>
+    <field>
+     <name>area_id</name>
+    </field>
+    <field>
+     <name>perm_user_id</name>
+    </field>
+   </index>
+
+  </declaration>
+
+ </table>
+
+ <table>
+
+  <name>liveuser_applications</name>
+
+  <declaration>
+
+   <field>
+    <name>application_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default>0</default>
+    <autoincrement>1</autoincrement>
+   </field>
+
+   <field>
+    <name>application_define_name</name>
+    <type>text</type>
+    <length>32</length>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <index>
+    <name>applications_define_name_i</name>
+    <unique>true</unique>
+    <field>
+     <name>application_define_name</name>
+    </field>
+   </index>
+
+  </declaration>
+
+ </table>
+
+ <table>
+
+  <name>liveuser_groups</name>
+
+  <declaration>
+
+   <field>
+    <name>group_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default>0</default>
+    <autoincrement>1</autoincrement>
+   </field>
+
+   <field>
+    <name>group_type</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+   </field>
+
+   <field>
+    <name>group_define_name</name>
+    <type>text</type>
+    <length>32</length>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <index>
+    <name>groups_define_name_i</name>
+    <unique>true</unique>
+    <field>
+     <name>group_define_name</name>
+    </field>
+   </index>
+
+  </declaration>
+
+ </table>
+
+ <table>
+
+  <name>liveuser_groupusers</name>
+
+  <declaration>
+
+   <field>
+    <name>perm_user_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>group_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <index>
+    <name>groupusers_id_i</name>
+    <unique>true</unique>
+    <field>
+     <name>perm_user_id</name>
+    </field>
+    <field>
+     <name>group_id</name>
+    </field>
+   </index>
+
+  </declaration>
+
+ </table>
+
+ <table>
+
+  <name>liveuser_grouprights</name>
+
+  <declaration>
+
+   <field>
+    <name>group_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>right_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>right_level</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default>3</default>
+   </field>
+
+   <index>
+    <name>grouprights_id_i</name>
+    <unique>true</unique>
+    <field>
+     <name>group_id</name>
+    </field>
+    <field>
+     <name>right_id</name>
+    </field>
+   </index>
+
+  </declaration>
+
+ </table>
+
+ <table>
+
+  <name>liveuser_group_subgroups</name>
+
+  <declaration>
+
+   <field>
+    <name>group_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>subgroup_id</name>
+    <type>integer</type>
+    <notnull>true</notnull>
+    <default></default>
+   </field>
+
+   <index>
+    <name>group_subgroups_id_i</name>
+    <unique>true</unique>
+    <field>
+     <name>group_id</name>
+    </field>
+    <field>
+     <name>subgroup_id</name>
+    </field>
+   </index>
+
+  </declaration>
+
+ </table>
+
+</database>
