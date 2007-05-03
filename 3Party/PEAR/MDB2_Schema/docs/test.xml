@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<database>
+
+ <name>test</name>
+ <create>true</create>
+ <overwrite>false</overwrite>
+
+ <table>
+
+  <name>test</name>
+
+  <declaration>
+
+   <field>
+    <name>id</name>
+    <type>integer</type>
+    <unsigned>true</unsigned>
+    <length>6</length>
+    <notnull>true</notnull>
+    <default>0</default>
+   </field>
+
+   <field>
+    <name>name</name>
+    <type>text</type>
+    <length>255</length>
+    <notnull>false</notnull>
+    <default>None</default>
+   </field>
+
+   <field>
+    <name>comment</name>
+    <type>text</type>
+    <notnull>false</notnull>
+   </field>
+
+  </declaration>
+
+ </table>
+
+</database>
