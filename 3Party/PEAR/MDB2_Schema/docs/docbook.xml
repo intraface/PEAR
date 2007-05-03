@@ -98,7 +98,7 @@ require 'MDB2/Schema.php';
 $definition = array(
     'name' => 'test',
     'create' => 1,
-    'overwrite' => 0,
+    'overwrite' => 0, // alter existing tables
     'tables' => array(
         'test' => array(
             'fields' => array(
@@ -125,10 +125,14 @@ $definition = array(
 $dsn = 'mysql://root:@localhost/test';
 $options = array(
     'output_mode' => 'file',
-    'output' => 'schema.xml',
+    'output' => 'schema.xml'
+);
+
+$options = array(
     'force_defaults' => false
 );
-$schema = MDB2_Schema::factory($dsn);
+
+$schema = MDB2_Schema::factory($dsn, $options);
 $schema->dumpDatabase($definition, $options, MDB2_SCHEMA_DUMP_STRUCTURE);
 ?>
         ]]></programlisting>
@@ -137,7 +141,7 @@ $schema->dumpDatabase($definition, $options, MDB2_SCHEMA_DUMP_STRUCTURE);
       The first parameter is just the database definition array. The second parameter is the options where we choose to output to a file. The third option tells <methodname>dumpDatabase()</methodname> what to be dumped - either the structure, the data in the tables, or both. This is defined using constants (MDB2_SCHEMA_DUMP_STRUCTURE, MDB2_SCHEMA_DUMP_CONTENT, MDB2_SCHEMA_DUMP_ALL).
     </para>
     <para>
-      Please notice that we set <varname>force_defaults</varname> to false. By default it is set to true in MDB2_Schema, but when you want to create a field with the type text, it need to be set to false. The reason being, that some databases don't accept a text field with a default value.
+      Please notice that <varname>$options['force_defaults']</varname> is set to false. By default it is set to true in MDB2_Schema, but when you want to create a field with the type text, it need to be set to false. The reason being, that some databases don't accept a text field with a default value.
     </para>
     <para>
       This code sample creates schema.xml containing the following:
@@ -203,7 +207,10 @@ $schema->dumpDatabase($definition, $options, MDB2_SCHEMA_DUMP_STRUCTURE);
 require_once 'MDB2/Schema.php';
 
 $dsn = 'msyql://root:@localhost/test';
-$options = array('debug' => true);
+$options = array(
+    'debug' => true,
+    'force_defaults' => false
+);
 
 $variables = array(
     'database'  => 'test',
@@ -256,7 +263,10 @@ $previous_schema = $this->getDefinitionFromDatabase();
 require_once 'MDB2/Schema.php';
 
 $dsn = 'msyql://root:@localhost/test';
-$options = array('debug' => true);
+$options = array(
+    'debug' => true,
+    'force_defaults' => false
+);
 
 $variables = array(
     'database'  => 'test',
