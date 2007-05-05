@@ -3,6 +3,7 @@ ini_set('display_errors',true);
 require_once 'PEAR/PackageFileManager2.php';
 require_once 'PEAR/PackageFileManager/File.php';
 require_once 'PEAR/Task/Postinstallscript/rw.php';
+require_once 'PEAR/Task/Chiara/Managedb.php';
 require_once 'PEAR/Task/Chiara/Managedb/rw.php';
 require_once 'PEAR/Config.php';
 require_once 'PEAR/Frontend.php';
@@ -24,7 +25,8 @@ $pfm->setOptions(array(
                       'generate_package_xml.php'),
     'simpleoutput' => true,
     'roles'=>array('php'=>'php',
-                   'database.xml'=>'chiaramdb2schema'),
+                   'auth_schema.xml'=>'chiaramdb2schema',
+                   'perm_schema.xml'=>'chiaramdb2schema'),
     'exceptions'=>array()
 ));
 $pfm->setPackage('LiveUser_Schema');
@@ -63,7 +65,9 @@ $pfm->addPostinstallTask($perm_task, 'perm_schema.xml');
 $pfm->generateContents();
 
 if (isset($_SERVER['argv']) && $_SERVER['argv'][1] == 'make') {
-    $pfm->writePackageFile();
+    if ($pfm->writePackageFile()) {
+        exit('package file written');
+    }
 } else {
     $pfm->debugPackageFile();
 }
