@@ -137,6 +137,35 @@ $server->handleCall();
         ]]></programlisting>
       </para>
     </section>
+
+    <section id="server-side-encode-response">
+      <title>Encode response</title>
+
+      <para>
+        <programlisting><![CDATA[
+<?php
+require_once 'XML/RPC2/Server.php';
+
+class EncodedMessageServer {
+    /**
+     * encoded message.
+     *
+     * @return string Encoded msg
+     */
+    public static function encodedMsg()
+    {
+        require_once 'XML/RPC2/Backend/Php/Value/Base64.php';
+        $string = new XML_RPC2_Backend_Php_Value_Base64('The <quick> brown fox jumped over the lazy dog');
+		return $string->encode();
+    }
+}
+$server = XML_RPC2_Server::create('EncodedMessageServer');
+$server->handleCall();
+?>
+        ]]></programlisting>
+      </para>
+    </section>
+
   </chapter>
 
 </book>
