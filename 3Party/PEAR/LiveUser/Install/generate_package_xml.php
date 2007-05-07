@@ -1,5 +1,9 @@
 <?php
 ini_set('display_errors',true);
+
+require_once 'PEAR/Config.php';
+PEAR_Config::singleton('C:/WINDOWS/pear.ini', 'C:/WINDOWS/pear.ini');
+
 require_once 'PEAR/PackageFileManager2.php';
 require_once 'PEAR/PackageFileManager/File.php';
 require_once 'PEAR/Task/Postinstallscript/rw.php';
