@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.5.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>LiveUser_Schema</name>
+ <uri>http://localhost/</uri>
+ <summary>A database schema for PEAR LiveUser</summary>
+ <description>This package contains a complex database schema for use with the PEAR LiveUser package.</description>
+ <lead>
+  <name>Lars Olesen</name>
+  <user>lsolesen</user>
+  <email>lars@legestue.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2007-05-09</date>
+ <time>03:04:38</time>
+ <version>
+  <release>0.0.1</release>
+  <api>0.0.1</api>
+ </version>
+ <stability>
+  <release>alpha</release>
+  <api>alpha</api>
+ </stability>
+ <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+ <notes>* First release.</notes>
+ <contents>
+  <dir baseinstalldir="LiveUser/Install" name="/">
+   <file name="auth_schema.xml" role="chiaramdb2schema">
+    <tasks:chiara_managedb />
+   </file>
+   <file name="perm_schema.xml" role="chiaramdb2schema">
+    <tasks:chiara_managedb />
+   </file>
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.3</min>
+   </pearinstaller>
+   <package>
+    <name>PEAR_Installer_Role_Chiaramdb2schema</name>
+    <channel>pear.chiaraquartet.net</channel>
+    <min>0.2.0</min>
+   </package>
+   <package>
+    <name>PEAR_Task_Chiara_Managedb</name>
+    <channel>pear.chiaraquartet.net</channel>
+    <min>0.1.1</min>
+   </package>
+  </required>
+ </dependencies>
+ <usesrole>
+  <role>chiaramdb2schema</role>
+  <package>PEAR_Installer_Role_Chiaramdb2schema</package>
+  <channel>pear.chiaraquartet.net</channel>
+ </usesrole>
+ <usestask>
+  <task>chiara-managedb</task>
+  <package>PEAR_Task_Chiara_Managedb</package>
+  <channel>pear.chiaraquartet.net</channel>
+ </usestask>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.0.1</release>
+    <api>0.0.1</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2007-05-09</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+   <notes>* First release.</notes>
+  </release>
+ </changelog>
+</package>
