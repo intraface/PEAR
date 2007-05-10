@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <database>
 
- <name>test</name>
- <create>1</create>
- <overwrite>1</overwrite>
+ <name><variable>database</variable></name>
+ <create><variable>create</variable></create>
+ <overwrite><variable>overwrite</variable></overwrite>
 
  <table>
 
@@ -12,11 +12,11 @@
   <declaration>
 
    <field>
-    <name>authUserId</name>
-    <type>integer</type>
+    <name>auth_user_id</name>
+    <type>text</type>
+    <length>32</length>
     <notnull>true</notnull>
-    <default>0</default>
-    <autoincrement>1</autoincrement>
+    <default></default>
    </field>
 
    <field>
@@ -35,29 +35,13 @@
     <default></default>
    </field>
 
-   <field>
-    <name>lastLogin</name>
-    <type>timestamp</type>
-    <notnull>false</notnull>
-   </field>
-
-   <field>
-    <name>isActive</name>
-    <type>boolean</type>
-    <notnull>false</notnull>
-   </field>
-
-   <field>
-    <name>owner_user_id</name>
-    <type>integer</type>
-    <notnull>false</notnull>
-   </field>
-
-   <field>
-    <name>owner_group_id</name>
-    <type>integer</type>
-    <notnull>false</notnull>
-   </field>
+   <index>
+    <name>users_auth_user_id</name>
+    <primary>true</primary>
+    <field>
+     <name>auth_user_id</name>
+    </field>
+   </index>
 
    <index>
     <name>users_unique_i</name>
@@ -70,5 +54,13 @@
   </declaration>
 
  </table>
+
+ <sequence>
+  <name>liveuser_users</name>
+  <on>
+   <table>liveuser_users</table>
+   <field>auth_user_id</field>
+  </on>
+ </sequence>
 
 </database>
