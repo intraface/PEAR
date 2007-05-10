@@ -63,13 +63,13 @@ $auth_task = new PEAR_Task_Chiara_Managedb_rw($pfm, $config, $log,
 $perm_task = new PEAR_Task_Chiara_Managedb_rw($pfm, $config, $log,
     array('name' => 'perm_schema.xml', 'role' => 'chiaramdb2schema'));
 
-$pfm->addTaskToFile('auth_schema.xml', $auth_task);
-$pfm->addTaskToFile('perm_schema.xml', $perm_task);
-
 //$pfm->addPostinstallTask($auth_task, 'auth_schema.xml');
 //$pfm->addPostinstallTask($perm_task, 'perm_schema.xml');
 
 $pfm->generateContents();
+
+$pfm->addTaskToFile('auth_schema.xml', $auth_task);
+$pfm->addTaskToFile('perm_schema.xml', $perm_task);
 
 if (isset($_GET['make']) OR isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make') {
     if ($pfm->writePackageFile()) {
