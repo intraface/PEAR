@@ -14,7 +14,7 @@
   <active>yes</active>
  </lead>
  <date>2007-05-09</date>
- <time>19:12:59</time>
+ <time>20:21:17</time>
  <version>
   <release>0.0.1</release>
   <api>0.0.1</api>
@@ -27,8 +27,12 @@
  <notes>* First release.</notes>
  <contents>
   <dir baseinstalldir="LiveUser/Install" name="/">
-   <file name="auth_schema.xml" role="chiaramdb2schema" />
-   <file name="perm_schema.xml" role="chiaramdb2schema" />
+   <file name="auth_schema.xml" role="chiaramdb2schema">
+    <tasks:chiara-managedb />
+   </file>
+   <file name="perm_schema.xml" role="chiaramdb2schema">
+    <tasks:chiara-managedb />
+   </file>
   </dir> <!-- / -->
  </contents>
  <dependencies>
