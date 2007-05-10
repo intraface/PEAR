@@ -44,7 +44,7 @@ $pfm->setReleaseVersion('0.0.1');
 $pfm->setNotes("* First release.");
 
 $pfm->addUsesRole('chiaramdb2schema', 'PEAR_Installer_Role_Chiaramdb2schema', 'pear.chiaraquartet.net');
-$pfm->addUsesTask('chiara_managedb', 'PEAR_Task_Chiara_Managedb', 'pear.chiaraquartet.net');
+$pfm->addUsesTask('chiara-managedb', 'PEAR_Task_Chiara_Managedb', 'pear.chiaraquartet.net');
 
 $pfm->addMaintainer('lead','lsolesen','Lars Olesen','lars@legestue.net');
 $pfm->setLicense('BSD', 'http://www.opensource.org/licenses/bsd-license.php');
