@@ -52,7 +52,7 @@ $pfm->clearDeps();
 $pfm->setPhpDep('5.0.0');
 $pfm->setPearinstallerDep('1.4.3');
 $pfm->addPackageDepWithChannel('required', 'PEAR_Installer_Role_Chiaramdb2schema', 'pear.chiaraquartet.net', '0.2.0');
-$pfm->addPackageDepWithChannel('required', 'PEAR_Task_Chiara_Managedb', 'pear.chiaraquartet.net', '0.1.1');
+$pfm->addPackageDepWithChannel('required', 'PEAR_Task_Chiara_Managedb', 'pear.chiaraquartet.net', '0.1.2');
 
 
 $config = PEAR_Config::singleton();
