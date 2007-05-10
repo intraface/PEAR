@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <database>
 
- <name>test</name>
- <create>1</create>
- <overwrite>1</overwrite>
+ <name><variable>database</variable></name>
+ <create><variable>create</variable></create>
+ <overwrite><variable>overwrite</variable></overwrite>
 
  <table>
 
@@ -15,13 +15,13 @@
     <name>perm_user_id</name>
     <type>integer</type>
     <notnull>true</notnull>
-    <default>0</default>
-    <autoincrement>1</autoincrement>
+    <default></default>
    </field>
 
    <field>
     <name>auth_user_id</name>
-    <type>integer</type>
+    <type>text</type>
+    <length>32</length>
     <notnull>true</notnull>
     <default></default>
    </field>
@@ -41,6 +41,14 @@
    </field>
 
    <index>
+    <name>perm_users_perm_user_id</name>
+    <primary>true</primary>
+    <field>
+     <name>perm_user_id</name>
+    </field>
+   </index>
+
+   <index>
     <name>perm_users_auth_id_i</name>
     <unique>true</unique>
     <field>
@@ -54,6 +62,14 @@
   </declaration>
 
  </table>
+
+ <sequence>
+  <name>liveuser_perm_users</name>
+  <on>
+   <table>liveuser_perm_users</table>
+   <field>perm_user_id</field>
+  </on>
+ </sequence>
 
  <table>
 
@@ -107,8 +123,7 @@
     <name>right_id</name>
     <type>integer</type>
     <notnull>true</notnull>
-    <default>0</default>
-    <autoincrement>1</autoincrement>
+    <default></default>
    </field>
 
    <field>
@@ -133,6 +148,14 @@
    </field>
 
    <index>
+    <name>rights_right_id</name>
+    <primary>true</primary>
+    <field>
+     <name>right_id</name>
+    </field>
+   </index>
+
+   <index>
     <name>rights_define_name_i</name>
     <unique>true</unique>
     <field>
@@ -146,6 +169,14 @@
   </declaration>
 
  </table>
+
+ <sequence>
+  <name>liveuser_rights</name>
+  <on>
+   <table>liveuser_rights</table>
+   <field>right_id</field>
+  </on>
+ </sequence>
 
  <table>
 
@@ -192,8 +223,7 @@
     <name>translation_id</name>
     <type>integer</type>
     <notnull>true</notnull>
-    <default>0</default>
-    <autoincrement>1</autoincrement>
+    <default></default>
    </field>
 
    <field>
@@ -233,6 +263,14 @@
    </field>
 
    <index>
+    <name>translations_translation_id</name>
+    <primary>true</primary>
+    <field>
+     <name>translation_id</name>
+    </field>
+   </index>
+
+   <index>
     <name>translations_translation_i</name>
     <unique>true</unique>
     <field>
@@ -250,6 +288,14 @@
 
  </table>
 
+ <sequence>
+  <name>liveuser_translations</name>
+  <on>
+   <table>liveuser_translations</table>
+   <field>translation_id</field>
+  </on>
+ </sequence>
+
  <table>
 
   <name>liveuser_areas</name>
@@ -260,8 +306,7 @@
     <name>area_id</name>
     <type>integer</type>
     <notnull>true</notnull>
-    <default>0</default>
-    <autoincrement>1</autoincrement>
+    <default></default>
    </field>
 
    <field>
@@ -280,6 +325,14 @@
    </field>
 
    <index>
+    <name>areas_area_id</name>
+    <primary>true</primary>
+    <field>
+     <name>area_id</name>
+    </field>
+   </index>
+
+   <index>
     <name>areas_define_name_i</name>
     <unique>true</unique>
     <field>
@@ -293,6 +346,14 @@
   </declaration>
 
  </table>
+
+ <sequence>
+  <name>liveuser_areas</name>
+  <on>
+   <table>liveuser_areas</table>
+   <field>area_id</field>
+  </on>
+ </sequence>
 
  <table>
 
@@ -339,8 +400,7 @@
     <name>application_id</name>
     <type>integer</type>
     <notnull>true</notnull>
-    <default>0</default>
-    <autoincrement>1</autoincrement>
+    <default></default>
    </field>
 
    <field>
@@ -350,6 +410,14 @@
     <notnull>true</notnull>
     <default></default>
    </field>
+
+   <index>
+    <name>applications_application_id</name>
+    <primary>true</primary>
+    <field>
+     <name>application_id</name>
+    </field>
+   </index>
 
    <index>
     <name>applications_define_name_i</name>
@@ -363,6 +431,14 @@
 
  </table>
 
+ <sequence>
+  <name>liveuser_applications</name>
+  <on>
+   <table>liveuser_applications</table>
+   <field>application_id</field>
+  </on>
+ </sequence>
+
  <table>
 
   <name>liveuser_groups</name>
@@ -373,8 +449,7 @@
     <name>group_id</name>
     <type>integer</type>
     <notnull>true</notnull>
-    <default>0</default>
-    <autoincrement>1</autoincrement>
+    <default></default>
    </field>
 
    <field>
@@ -392,6 +467,14 @@
    </field>
 
    <index>
+    <name>groups_group_id</name>
+    <primary>true</primary>
+    <field>
+     <name>group_id</name>
+    </field>
+   </index>
+
+   <index>
     <name>groups_define_name_i</name>
     <unique>true</unique>
     <field>
@@ -402,6 +485,14 @@
   </declaration>
 
  </table>
+
+ <sequence>
+  <name>liveuser_groups</name>
+  <on>
+   <table>liveuser_groups</table>
+   <field>group_id</field>
+  </on>
+ </sequence>
 
  <table>
 

@@ -1,7 +1,19 @@
 <?php
-
+/**
+ * Generates the MDB2_Schema needed to install LiveUser
+ *
+ * PHP version 4 and 5
+ *
+ * @category authentication
+ * @package LiveUser
+ * @author  Lukas Smith <smith@pooteeweet.org>
+ * @copyright 2002-2006 Markus Wolff
+ * @license http://www.gnu.org/licenses/lgpl.txt
+ * @version CVS: $Id: install.php,v 1.51 2006/05/01 10:46:30 lsmith Exp $
+ * @link http://pear.php.net/LiveUser
+ */
 require 'Install.php';
-// error handler
+
 function handleError($err)
 {
    var_dump($err);
@@ -20,35 +32,8 @@ $conf = array(
     'authContainers' => array(
         array(
             'type'         => 'MDB2',
-            'expireTime'   => 3600,
-            'idleTime'     => 1800,
             'storage' => array(
                 'dsn' => $dsn,
-                'force_seq' => false,
-                'alias' => array(
-                    'auth_user_id' => 'authUserId',
-                    'lastlogin' => 'lastLogin',
-                    'is_active' => 'isActive',
-                    'owner_user_id' => 'owner_user_id',
-                    'owner_group_id' => 'owner_group_id',
-                ),
-                'fields' => array(
-                    'auth_user_id' => 'integer',
-                    'lastlogin' => 'timestamp',
-                    'is_active' => 'boolean',
-                    'owner_user_id' => 'integer',
-                    'owner_group_id' => 'integer',
-                ),
-                'tables' => array(
-                    'users' => array(
-                        'fields' => array(
-                            'lastlogin' => null,
-                            'is_active' => null,
-                            'owner_user_id' => null,
-                            'owner_group_id' => null,
-                        ),
-                    ),
-                ),
             ),
         ),
     ),
@@ -57,11 +42,6 @@ $conf = array(
         'storage' => array(
             'MDB2' => array(
                 'dsn' => $dsn,
-                'prefix' => 'liveuser_',
-                'force_seq' => false,
-                'fields' => array(
-                    'auth_user_id' => 'integer',
-                ),
             )
         )
     )
