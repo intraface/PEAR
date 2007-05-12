@@ -31,14 +31,12 @@
   </bookinfo>
   <toc></toc>
 
-  <!--
   <preface id="preface">
     <title>Preface</title>
     <para>
-      This tutorial describes how to use PHPMailer and explains the use of the class functions.
+      This tutorial describes how to use PEAR XML_RPC2 PHP 5 library.
     </para>
   </preface>
-  -->
 
   <chapter id="introduction">
     <title>Introduction</title>
