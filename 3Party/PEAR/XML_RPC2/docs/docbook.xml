@@ -4,7 +4,7 @@
 <book>
 
   <bookinfo>
-	<date>2007-04-28</date>
+    <date>2007-04-28</date>
     <title>XML_RPC2</title>
     <subtitle></subtitle>
     <authorgroup>
@@ -142,6 +142,44 @@ $server->handleCall();
       <title>Encode response</title>
 
       <para>
+        You might need to encode your response, when using <classname>XML_RPC2</classname>. Encoding has to be manual, because PHP cannot distinguish a base64 string from a regular string using PHP's reflection mechanisms (they're both typed string, the base64 type does not exist in PHP).
+      </para>
+
+      <para>
+        Encoding is done using the static factory method in <classname>XML_RPC2_Value</classname>:
+      </para>
+
+      <para>
+        <programlisting><![CDATA[
+$aBase64String = 'The <quick> brown fox jumped over the lazy dog';
+$encodedBase64Value = XML_RPC2_Value::createFromNative($aBase64String, 'base64');
+        ]]></programlisting>
+      </para>
+
+      <para>
+          Then, you can use the <varname>$encodedBase54Value</varname> as an argument in a call or as a return value on a server method.
+      </para>
+
+      <para>
+        Generically, if a variable is an instance of <classname>XML_RPC2_Value</classname>, <classname>XML_RPC2</classname> will not try to automatically encode it. You can use this behaviour to force an encoding. Say you have an integer which you want encoded as string for a call:
+      </para>
+
+      <para>
+        <programlisting><![CDATA[
+$integer = 2;
+$encodedInteger = XML_RPC2_Value::createFromNative($integer, 'string');
+        ]]></programlisting>
+      </para>
+
+      <para>
+        In some cases, this is impossible because one PHP type maps out to more than one XML-RPC type. For example, you have an array that must be encoded as a struct:
+      </para>
+
+      <para>
+        To create an actual server, you have to do the following;
+      </para>
+
+      <para>
         <programlisting><![CDATA[
 <?php
 require_once 'XML/RPC2/Server.php';
@@ -154,9 +192,9 @@ class EncodedMessageServer {
      */
     public static function encodedMsg()
     {
-        require_once 'XML/RPC2/Backend/Php/Value/Base64.php';
-        $string = new XML_RPC2_Backend_Php_Value_Base64('The <quick> brown fox jumped over the lazy dog');
-		return $string->encode();
+
+        $aBase64String = 'The <quick> brown fox jumped over the lazy dog';
+        return XML_RPC2_Value::createFromNative($aBase64String, 'base64');
     }
 }
 $server = XML_RPC2_Server::create('EncodedMessageServer');
@@ -164,6 +202,11 @@ $server->handleCall();
 ?>
         ]]></programlisting>
       </para>
+
+      <para>
+          Decoding is done automatically when you are using <classname>XML_RPC2</classname>.
+      </para>
+
     </section>
 
   </chapter>
