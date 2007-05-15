@@ -4,13 +4,13 @@
  *
  * PHP version 4 and 5
  *
- * @category authentication
- * @package LiveUser
- * @author  Lukas Smith <smith@pooteeweet.org>
+ * @category  authentication
+ * @package   LiveUser
+ * @author    Lukas Smith <smith@pooteeweet.org>
  * @copyright 2002-2006 Markus Wolff
- * @license http://www.gnu.org/licenses/lgpl.txt
- * @version CVS: $Id: install.php,v 1.51 2006/05/01 10:46:30 lsmith Exp $
- * @link http://pear.php.net/LiveUser
+ * @license   http://www.gnu.org/licenses/lgpl.txt
+ * @version   CVS: $Id: install.php,v 1.51 2006/05/01 10:46:30 lsmith Exp $
+ * @link      http://pear.php.net/LiveUser
  */
 require 'Install.php';
 
