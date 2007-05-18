@@ -9,9 +9,13 @@
     <subtitle></subtitle>
     <authorgroup>
       <author>
-      </author>
         <firstname>Sérgio</firstname>
         <surname>Carvalho</surname>
+      </author>
+      <author>
+        <firstname>Fabien</firstname>
+        <surname>Marty</surname>
+      </author>
       <author>
         <firstname>Lars</firstname>
         <surname>Olesen</surname>
@@ -59,7 +63,8 @@
 <?php
 require_once 'XML/RPC2/Server.php';
 
-class ExampleServer {
+class ExampleServer
+{
 
     /**
      * says hello
@@ -82,7 +87,6 @@ class ExampleServer {
      {
          return strip_tags($greeting);
      }
-
 }
 
 $server = XML_RPC2_Server::create(new ExampleServer());
@@ -109,7 +113,8 @@ $server->handleCall();
 <?php
 require_once 'XML/RPC2/Server.php';
 
-class BustedServer {
+class BustedServer
+{
    /**
     * crash. Returns an error everytime
     *
@@ -129,6 +134,7 @@ class BustedServer {
        throw new XML_RPC2_FaultException('Kaboom!', 42);
    }
 }
+
 $server = XML_RPC2_Server::create('BustedServer');
 $server->handleCall();
 ?>
@@ -182,7 +188,8 @@ $encodedInteger = XML_RPC2_Value::createFromNative($integer, 'string');
 <?php
 require_once 'XML/RPC2/Server.php';
 
-class EncodedMessageServer {
+class EncodedMessageServer
+{
     /**
      * encoded message.
      *
@@ -190,11 +197,11 @@ class EncodedMessageServer {
      */
     public static function encodedMsg()
     {
-
         $aBase64String = 'The <quick> brown fox jumped over the lazy dog';
         return XML_RPC2_Value::createFromNative($aBase64String, 'base64');
     }
 }
+
 $server = XML_RPC2_Server::create('EncodedMessageServer');
 $server->handleCall();
 ?>
@@ -209,4 +216,79 @@ $server->handleCall();
 
   </chapter>
 
+  <chapter id="authentication">
+
+    <title>Authentication</title>
+
+    <para>
+      XML-RPC is designed to sit on top of HTTP, so ideally authentication is not a task for <classname>XML_RPC2</classname>. The ideal solution is that the authentication leverages on HTTP's authentication mechanism. In the following we will show you how to use authentication using HTTP, and if you choose to use the server itself.
+    </para>
+
+    <section id="authenticate-http">
+      <title>Authenticate using HTTP</title>
+       <para>
+          XML-RPC is designed to sit on top of HTTP, so it should leverage HTTP's authentication mechanisms. There are two:
+       </para>
+       <itemizedlist>
+            <listitem><simpara>https with client certificate</simpara></listitem>
+            <listitem><simpara>Regular http auth (using challenge response, usually)</simpara></listitem>
+       </itemizedlist>
+       <para>
+          Authentication should be handled by <classname>HTTP_Request2</classname>, or a similar library. This library is not written yet, and when it is, we will show you the solution.
+       </para>
+    </section>
+    <section id="authenticate-server">
+       <title>Authenticate sending credentials on every request</title>
+       <para>
+            You can also authenticate by sending the authentication on every request like the example below:
+       </para>
+       <para>
+         <programlisting><![CDATA[
+class ServerWithAuthentication
+{
+    /**
+     * An authenticated method answering every question in the world
+     *
+     * @param string  $credentials The code key for the server
+     * @param integer $question    The question the server must respond to
+     *
+     * @return string with answer to the question
+     */
+    function ask($credentials, $question)
+    {
+        if (!$this->checkCredentials($credentials)) {
+            throw new XML_RPC2_FaultException('Credentials not accepted', -1);
+        }
+
+        switch ($question) {
+            case 'therightquestiong':
+                return 'I totally know the answer for that one. Let me think.';
+                break;
+            default:
+                return 'How should I know? Do I look like a computer?';
+                break;
+        }
+    }
+
+    /**
+     * Checking credentials - at the moment all nonempty credentials will pass
+     *
+     * @param struct $credentials The code key for the server
+     *
+     * @return boolean
+     */
+    function checkCredentials($credentials = null)
+    {
+        if (empty($credentials)) {
+            return false
+        }
+        return true;
+    }
+}
+
+$server = XML_RPC2_Server::create('ServerWithAuthentication');
+$server->handleCall();
+        ]]></programlisting>
+      </para>
+    </section>
 </book>
