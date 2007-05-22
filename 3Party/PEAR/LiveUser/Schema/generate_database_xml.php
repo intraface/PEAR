@@ -1,6 +1,6 @@
 <?php
 /**
- * Generates the MDB2_Schema needed to install LiveUser
+ * Generates the MDB2_Schema needed to install LiveUser Complex package
  *
  * PHP version 4 and 5
  *
