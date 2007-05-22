@@ -107,57 +107,25 @@
 /* config.liveuser.php */
 
 $configuration = array(
-            'debug' => true,
-            'authContainers' => array(
-                array(
-                    'passwordEncryptionMode'=> 'MD5',
-                    'type'         => 'MDB2',
-                    'expireTime'   => 3600,
-                    'idleTime'     => 1800,
-                    'storage' => array(
-                        'dsn' => $dsn,
-                        'force_seq' => false,
-                        'alias' => array(
-                            'auth_user_id' => 'auth_user_id',
-                            'lastlogin' => 'lastlogin',
-                            'is_active' => 'is_active',
-                            'owner_user_id' => 'owner_user_id',
-                            'owner_group_id' => 'owner_group_id',
-                        ),
-                        'fields' => array(
-                            'auth_user_id' => 'integer',
-                            'lastlogin' => 'timestamp',
-                            'is_active' => 'boolean',
-                            'owner_user_id' => 'integer',
-                            'owner_group_id' => 'integer',
-                        ),
-                        'tables' => array(
-                            'users' => array(
-                            'fields' => array(
-                                'lastlogin' => null,
-                                'is_active' => null,
-                                'owner_user_id' => null,
-                                'owner_group_id' => null,
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
+    'authContainers' => array(
+        array(
+            'type'         => 'MDB2',
+            'storage' => array(
+                'dsn' => $dsn,
+                'force_seq' => false
             ),
-            'permContainer'  => array(
-                'type'  => 'Complex',
-                    'storage' => array(
-                        'MDB2' => array(
-                            'dsn' => $dsn,
-                            'prefix' => 'liveuser_',
-                            'force_seq' => false,
-                        'fields' => array(
-                            'auth_user_id' => 'integer',
-                        ),
-                    )
-                )
+        ),
+    ),
+    'permContainer'  => array(
+        'type'  => 'Complex',
+        'storage' => array(
+            'MDB2' => array(
+                'dsn' => $dsn,
+                'force_seq' => false
             )
-        );
+        )
+    )
+);
 ?>
         ]]></programlisting>
       </para>
@@ -182,48 +150,18 @@ $configuration = array(
                 array(
                     'passwordEncryptionMode'=> 'MD5',
                     'type'         => 'MDB2',
-                    'expireTime'   => 3600,
-                    'idleTime'     => 1800,
                     'storage' => array(
                         'dsn' => $dsn,
                         'force_seq' => false,
-                        'alias' => array(
-                            'auth_user_id' => 'auth_user_id',
-                            'lastlogin' => 'lastlogin',
-                            'is_active' => 'is_active',
-                            'owner_user_id' => 'owner_user_id',
-                            'owner_group_id' => 'owner_group_id',
-                        ),
-                        'fields' => array(
-                            'auth_user_id' => 'integer',
-                            'lastlogin' => 'timestamp',
-                            'is_active' => 'boolean',
-                            'owner_user_id' => 'integer',
-                            'owner_group_id' => 'integer',
-                        ),
-                        'tables' => array(
-                            'users' => array(
-                            'fields' => array(
-                                'lastlogin' => null,
-                                'is_active' => null,
-                                'owner_user_id' => null,
-                                'owner_group_id' => null,
-                                ),
-                            ),
-                        ),
                     ),
                 ),
             ),
             'permContainer'  => array(
                 'type'  => 'Complex',
-                    'storage' => array(
-                        'MDB2' => array(
-                            'dsn' => $dsn,
-                            'prefix' => 'liveuser_',
-                            'force_seq' => false,
-                        'fields' => array(
-                            'auth_user_id' => 'integer',
-                        ),
+                'storage' => array(
+                    'MDB2' => array(
+                        'dsn' => $dsn,
+                        'force_seq' => false,
                     )
                 )
             )
@@ -338,8 +276,39 @@ class MyClass extends LiveUser
     }
 }
 ?>
-       ]]></para>
+       ]]></programlisting></para>
     </section>
+  </chapter>
+
+  <chapter id="debugging">
+    <title>Debugging</title>
+
+    <para>
+      Debugging LiveUser is not really that easy. The implementation behind could use some work. It utilizes the <classname>Log</classname> through <classname>PEAR_ErrorStack</para>.
+    </para>
+
+    <para>
+      By default debugging will be sent to a popup window. You can changes this behavior, and output to a file, doing this:
+    </para>
+
+      <para>
+        <programlisting><![CDATA[
+<?php
+class MyClass extends LiveUser
+{
+    function MyClass()
+    {
+    }
+
+    function customMethod()
+    {
+        $this->dispatcher->post($this,'onMyCustomEvent');
+    }
+}
+?>
+       ]]></programlisting></para>
+
+
   </chapter>
 
   <chapter id="examples">
