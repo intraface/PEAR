@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<database>
+
+ <name>MDB2Debug</name>
+ <create>true</create>
+ <overwrite>false</overwrite>
+
+ <table>
+
+  <name>people</name>
+
+  <declaration>
+
+   <field>
+    <name>ID</name>
+    <type>integer</type>
+    <length>4</length>
+    <notnull>false</notnull>
+    <default></default>
+   </field>
+
+   <field>
+    <name>Name</name>
+    <type>text</type>
+    <length>16</length>
+    <notnull>false</notnull>
+    <fixed>true</fixed>
+    <default></default>
+   </field>
+
+   <field>
+    <name>PhoneNumber</name>
+    <type>text</type>
+    <length>16</length>
+    <notnull>false</notnull>
+    <fixed>true</fixed>
+    <default></default>
+   </field>
+
+  </declaration>
+
+  <initialization>
+
+   <insert>
+    <field>
+     <name>ID</name>
+     <value>1</value>
+    </field>
+    <field>
+     <name>Name</name>
+     <value>Igor</value>
+    </field>
+    <field>
+     <name>PhoneNumber</name>
+     <value>12345678</value>
+    </field>
+   </insert>
+
+   <insert>
+    <field>
+     <name>ID</name>
+     <value>2</value>
+    </field>
+    <field>
+     <name>Name</name>
+     <value>Heloisa</value>
+    </field>
+    <field>
+     <name>PhoneNumber</name>
+     <value>12345678</value>
+    </field>
+   </insert>
+
+  </initialization>
+
+ </table>
+
+</database>
