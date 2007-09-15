@@ -54,7 +54,6 @@ $pfm->setPearinstallerDep('1.4.3');
 $pfm->addPackageDepWithChannel('required', 'PEAR_Installer_Role_Chiaramdb2schema', 'pear.chiaraquartet.net', '0.2.0');
 $pfm->addPackageDepWithChannel('required', 'PEAR_Task_Chiara_Managedb', 'pear.chiaraquartet.net', '0.1.2');
 
-
 $config = PEAR_Config::singleton();
 $log = PEAR_Frontend::singleton();
 $auth_task = new PEAR_Task_Chiara_Managedb_rw($pfm, $config, $log,
@@ -63,8 +62,8 @@ $auth_task = new PEAR_Task_Chiara_Managedb_rw($pfm, $config, $log,
 $perm_task = new PEAR_Task_Chiara_Managedb_rw($pfm, $config, $log,
     array('name' => 'perm_schema.xml', 'role' => 'chiaramdb2schema'));
 
-//$pfm->addPostinstallTask($auth_task, 'auth_schema.xml');
-//$pfm->addPostinstallTask($perm_task, 'perm_schema.xml');
+$pfm->addPostinstallTask($auth_task, 'auth_schema.xml');
+$pfm->addPostinstallTask($perm_task, 'perm_schema.xml');
 
 $pfm->generateContents();
 
