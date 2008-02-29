@@ -1,0 +1,11 @@
+--- original/AddressBook.php	2008-02-29 13:42:52.000000000 +0100
++++ src/Contact/AddressBook.php	2008-02-29 13:44:44.000000000 +0100
+@@ -269,7 +269,7 @@
+     function getDataDir()
+     {
+         require_once 'PEAR/Config.php';
+-        $config = new PEAR_Config;
++        $config = PEAR_Config::singleton();
+         return $config->get('data_dir') . '/Contact_AddressBook/data';
+     }
+ 
