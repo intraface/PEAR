@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.6.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>Contact_AddressBook_bugfix_use_config_singleton</name>
+ <uri>http://localhost/</uri>
+ <summary>Fixes bug in Contact_AddressBook</summary>
+ <description>Fixes bug in Contact_AddressBook</description>
+ <lead>
+  <name>Sune Jensen</name>
+  <user>sune</user>
+  <email>sj@sunet.dk</email>
+  <active>yes</active>
+ </lead>
+ <date>2008-02-29</date>
+ <time>12:11:32</time>
+ <version>
+  <release>0.0.1</release>
+  <api>0.0.1</api>
+ </version>
+ <stability>
+  <release>beta</release>
+  <api>beta</api>
+ </stability>
+ <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL License</license>
+ <notes>* Now uses Config::singleton to make i possible to use local config</notes>
+ <contents>
+  <dir baseinstalldir="/" name="/">
+   <dir name="Contact">
+    <file name="AddressBook.php" role="php" />
+   </dir> <!-- //Contact -->
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.1.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.5.0</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.0.1</release>
+    <api>0.0.1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2008-02-29</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL License</license>
+   <notes>* Now uses Config::singleton to make i possible to use local config</notes>
+  </release>
+ </changelog>
+</package>
