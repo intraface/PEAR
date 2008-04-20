@@ -4,7 +4,7 @@ require_once 'PHPUnit/Framework.php';
 class EmptyFirstFieldTest extends PHPUnit_Framework_TestCase
 {    
     function testParseFileStartingWithADelimiter() {
-        require_once realpath('../src/').'/File/CSV.php';
+        require_once realpath('../src/').'/File/CSV/EmptyFirstFieldBugFix.php';
         $config = File_CSV_EmptyFirstFieldBugFix::discoverFormat('example.csv');
         while ($res = File_CSV_EmptyFirstFieldBugFix::readQuoted('example.csv', $config)) 
             $result[] = $res;
