@@ -1,12 +1,12 @@
 <?php
 require_once 'PHPUnit/Framework.php';
 
-class bugTest extends PHPUnit_Framework_TestCase
+class EmptyFirstFieldTest extends PHPUnit_Framework_TestCase
 {    
     function testParseFileStartingWithADelimiter() {
-        require_once 'File/CSV.php';
-        $config = File_CSV::discoverFormat('example.csv');
-        while ($res = File_CSV::readQuoted('example.csv', $config)) 
+        require_once realpath('../src/').'/File/CSV.php';
+        $config = File_CSV_EmptyFirstFieldBugFix::discoverFormat('example.csv');
+        while ($res = File_CSV_EmptyFirstFieldBugFix::readQuoted('example.csv', $config)) 
             $result[] = $res;
         
         $expected = array(
