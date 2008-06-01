@@ -1,4 +1,0 @@
-038-         <tr><td>array</td><td>something</td><td>       A description</td></tr>
-038+         <tr><td>array</td><td>something</td><td>ng     A description</td></tr>
-039-         <tr><td>string</td><td>another_thing</td><td>  A description of another thing</td></tr>
-039+         <tr><td>string</td><td>another_thing</td><td>g A description of another thing</td></tr>
