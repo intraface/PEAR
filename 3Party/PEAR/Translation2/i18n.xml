@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE translation2 [
+<!ELEMENT translation2 (languages,pages)>
+<!ELEMENT languages (lang*)>
+<!ELEMENT lang (name?,meta?,error_text?,encoding?)>
+<!ATTLIST lang id ID #REQUIRED>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT meta (#PCDATA)>
+<!ELEMENT error_text (#PCDATA)>
+<!ELEMENT encoding (#PCDATA)>
+<!ELEMENT pages (page*)>
+<!ELEMENT page (string*)>
+<!ATTLIST page key CDATA #REQUIRED>
+<!ELEMENT string (tr*)>
+<!ATTLIST string key CDATA #REQUIRED>
+<!ELEMENT tr (#PCDATA)>
+<!ATTLIST tr lang IDREF #REQUIRED>
+]>
+
+<translation2>
+  <languages>
+    <lang id="da">
+      <name> danish </name>
+      <meta> some meta info </meta>
+      <error_text> not available </error_text>
+      <encoding> iso-8859-1 </encoding>
+    </lang>
+  </languages>
+  <pages>
+    <page key="#NULL">
+      <string key="some identifier">
+        <tr lang="da"> ÆØÅ </tr>
+      </string>
+    </page>
+  </pages>
+</translation2>
