@@ -1,0 +1,19 @@
+<role version="1.0">
+ <releasetypes>php</releasetypes>
+ <installable>1</installable>
+ <locationconfig>web_dir</locationconfig>
+ <honorsbaseinstall>1</honorsbaseinstall>
+ <unusualbaseinstall />
+ <phpfile>1</phpfile>
+ <executable />
+ <phpextension />
+ <config_vars>
+  <web_dir>
+   <type>directory</type>
+   <default>@php_dir@</default>
+   <doc>directory where files that belong in a website&apos;s $DOCUMENT_ROOT/webpear location are installed</doc>
+   <prompt>Website directory</prompt>
+   <group>File Locations</group>
+  </web_dir>
+ </config_vars>
+</role>

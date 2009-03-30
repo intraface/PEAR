@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.4.5" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>Role_Web</name>
+ <channel>public.intraface.dk</channel>
+ <summary>Web role</summary>
+ <description>The Web role installs files into a specified web document directory. Users are strongly encouraged
+  to use DocumentRoot/webpear as the path for the web_dir value.</description>
+ <lead>
+  <name>Sune Jensen</name>
+  <user>sune.t.jensen</user>
+  <email>sune@intraface.dk</email>
+  <active>yes</active>
+ </lead>
+ <date>2009-03-18</date>
+ <time>15:55:48</time>
+ <version>
+  <release>1.1.1</release>
+  <api>1.0.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.php.net/license/3_01.txt">PHP License</license>
+ <notes>Updated default web_dir value of post-install script to /var/www/htdocs/webpear.</notes>
+ <contents>
+  <dir name="/">
+   <file md5sum="37009d48ea77b1ff296afe64d89b1efc" name="PEAR/Installer/Role/Web.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+    <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
+   </file>
+   <file md5sum="1708e8055fc8c66545a041a236ac3a6f" name="PEAR/Installer/Role/Web.xml" role="php">
+    <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
+   </file>
+   <file md5sum="1a7d8cb998e89f022811516cc30cd61c" name="Pearified/Role/Web/setup.php" role="php">
+    <tasks:postinstallscript>
+     <paramgroup>
+      <id>webSetup</id>
+      <param>
+       <name>webdirpath</name>
+       <prompt>Where should web scripts and applications be installed?</prompt>
+       <default>/var/www/htdocs/webpear</default>
+       <type>string</type>
+      </param>
+     </paramgroup>
+    </tasks:postinstallscript>
+   </file>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>4.2</min>
+    <max>6.0.0</max>
+   </php>
+   <pearinstaller>
+    <min>1.4.3</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <date>2005-07-27</date>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>Provides the web file role</notes>
+  </release>
+  <release>
+   <date>2005-08-05</date>
+   <version>
+    <release>1.0.1</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license/3_0.txt">PHP License</license>
+   <notes>Now includes setup post-install script for configuring web_dir.</notes>
+  </release>
+  <release>
+   <date>2005-12-13</date>
+   <version>
+    <release>1.1.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license/3_01.txt">PHP License</license>
+   <notes>Updated for PEAR 1.4.3+ compatibility, addresses minor security issue.  Also updated license to PHP 3.01 license.</notes>
+  </release>
+  <release>
+   <date>2005-12-28</date>
+   <version>
+    <release>1.1.1</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license/3_01.txt">PHP License</license>
+   <notes>Updated default web_dir value of post-install script to /var/www/htdocs/webpear.</notes>
+  </release>
+ </changelog>
+</package>
